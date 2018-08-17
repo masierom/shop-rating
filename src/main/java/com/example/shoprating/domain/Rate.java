@@ -28,8 +28,15 @@ public class Rate {
 		return rate;
 	}
 	public void setRate(Double rate) { 
-		//Min 1 - Max 5
-		this.rate = rate;
+		if(rate >= 1.0) {
+			if(rate <= 5.0) {
+				this.rate = rate;
+			} else {
+				this.rate = 5.0;
+			}
+		} else {
+			this.rate = 1.0;
+		} 
 	}
 	public String getComment() {
 		return comment;
