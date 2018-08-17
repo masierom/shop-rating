@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.shoprating.domain.Rate;
 import com.example.shoprating.dto.Product;
+import com.example.shoprating.dto.RateRequest;
 import com.example.shoprating.repository.RateRepository;
 
 @Service
@@ -18,7 +19,7 @@ public class RatingService {
 	@Autowired
 	private ProductService pService;
 	
-	public Rate setRating(String productId, String userId) {
+	public Rate setRating(String productId, String userId, RateRequest rateReq) {
 		return null;
 	}
 	
