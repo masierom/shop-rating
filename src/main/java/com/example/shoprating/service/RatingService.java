@@ -20,11 +20,17 @@ public class RatingService {
 	private ProductService pService;
 	
 	public Rate setRating(String productId, String userId, RateRequest rateReq) {
-		return null;
+		Rate r = new Rate();
+		r.setProductId(productId);
+		r.setUserId(userId);
+		r.setRate(rateReq.getRate());
+		r.setComment(rateReq.getComment());
+		
+		return repo.save(r);
 	}
 	
 	public List<Rate> getProductRating(String productId) {
-		return null;
+		return repo.findByProductId(productId);
 	}
 	
 	public List<Product> getPopular() {
