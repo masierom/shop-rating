@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.shoprating.domain.Rate;
-import com.example.shoprating.dto.Product;
+import com.example.shoprating.dto.ProductWithRate;
 import com.example.shoprating.dto.RateRequest;
 import com.example.shoprating.service.RatingService;
 
@@ -34,7 +34,7 @@ public class RatingController {
 	}
 	
 	@GetMapping("/api/ratings/popular")
-	public @ResponseBody List<Product> getPopular() {
+	public @ResponseBody List<ProductWithRate> getPopular() {
 		return service.getPopular();
 	}
 }

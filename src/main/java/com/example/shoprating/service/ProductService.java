@@ -12,6 +12,9 @@ public class ProductService {
 	private RestTemplate rt;
 	
 	public Product getProductById(String productId) {
-		return null;
+		Product product = rt.getForObject(
+				"http://shop-catalog/api/products/{productId}", Product.class, productId);
+		
+		return product;
 	}
 }
