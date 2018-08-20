@@ -8,4 +8,5 @@ import com.example.shoprating.domain.Rate;
 
 public interface RateRepository extends CrudRepository<Rate, String>, RateRepositoryCustom{
 	public List<Rate> findByProductId(String productId);
+	public List<Rate> findByUserId(String userId);
 }

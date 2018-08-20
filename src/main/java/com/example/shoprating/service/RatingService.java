@@ -3,6 +3,7 @@ package com.example.shoprating.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,23 @@ public class RatingService {
 	private ProductService pService;
 	
 	public Rate setRating(String productId, String userId, RateRequest rateReq) {
-		Rate r = new Rate();
-		r.setProductId(productId);
-		r.setUserId(userId);
-		r.setRate(rateReq.getRate());
-		r.setComment(rateReq.getComment());
+		String oldId = repo.getIdByUserIdandProductID(userId, productId);
 		
-		return repo.save(r);
+		if(oldId == null) {			
+			Rate newRate = new Rate();
+			newRate.setProductId(productId);
+			newRate.setUserId(userId);
+			newRate.setRate(rateReq.getRate());
+			newRate.setComment(rateReq.getComment());
+		
+			return repo.save(newRate);
+		} else {
+			Optional<Rate> sr = repo.findById(oldId);
+			sr.get().setRate(rateReq.getRate());
+			sr.get().setComment(rateReq.getComment());
+			
+			return repo.save(sr.get());
+		}
 	}
 	
 	public List<Rate> getProductRating(String productId) {
